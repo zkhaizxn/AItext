@@ -34,9 +34,9 @@ for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
 
-ZHIPU_API_KEY1 = "65220d78711242b0b2e5ecb1d2464caf.xHafJGt7Yqo02shP"
+KEY = "65220d78711242b0b2e5ecb1d2464caf.xHafJGt7Yqo02shP"
 client = OpenAI(
-    api_key=ZHIPU_API_KEY1,# 从 bigmodel.cn 获取
+    api_key=KEY,# 从 bigmodel.cn 获取
     base_url="https://open.bigmodel.cn/api/paas/v4",
 )
 
@@ -52,7 +52,7 @@ if prompt := st.chat_input("描述你的口味，例如：今天想吃辣的，�
         with st.spinner("🤔 AI正在为你搭配美食..."):
             try:
                 response = client.chat.completions.create(
-                    model="glm-4.7-flash",
+                    model="GLM-4-Flash-250414",
                     messages=st.session_state.messages,
                     temperature=0.7,
                     max_tokens=1000,
@@ -75,6 +75,6 @@ if prompt := st.chat_input("描述你的口味，例如：今天想吃辣的，�
             except Exception as e:
                 st.error(f"请求失败: {e}")
                 st.exception(e)
-        time.sleep(0.01)
+        time.sleep(1)
     
 
