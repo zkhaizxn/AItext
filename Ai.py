@@ -73,7 +73,7 @@ def recommend_by_kg(health_goal=None, taste=None, allergens=None):
     return filtered.head(5).to_dict('records')
 
 #api工作区
-load_dotenv("G:\PythonAI\AGENT\.venv\AI\KEY.env")
+load_dotenv(r"G:\PythonAI\AGENT\.venv\AI\KEY.env")
 key = os.getenv("ZHIPU_API_KEY")
 
 client = OpenAI(
@@ -90,6 +90,7 @@ syetem_prompt ="""
    例如：
    - 用户说“我想减脂，不吃大豆” → 输出 [RECOMMEND: 减脂, 任意, 大豆]
    - 用户说“今天想吃辣的，高蛋白” → 输出 [RECOMMEND: 增肌, 辣, 无]
+   - 用户说“我对鱼类过敏” → 输出的菜品把包含过敏原的菜品去掉
    然后等待系统自动填充推荐结果。不要自己编造菜品。
 3. 如果用户只是闲聊或询问其他问题（如食堂位置、营业时间），请正常回答，不需要输出推荐请求。
 4. 回答要简洁友好。
